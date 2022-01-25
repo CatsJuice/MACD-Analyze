@@ -10,6 +10,22 @@ Python 对 MACD 的计算以及相关投资策略的分析
 - 相关模块的安装
 - 网易日线数据
 
+### 方法太笨了，建议将getEMA方法改为递归
+
+例如这样：
+
+```python
+# EMA=［2*X+(DAY-1)*EMA’］/(DAY+1)
+def get_ema(x,day):
+    if day==1:
+        return x[0]
+    
+    if day>1:
+        ret=(2*x[day-1]+(day-1)*get_ema(x,day-1))/(day+1)
+
+    return ret
+```
+
 ### 运行
 
 直接运行 `macd.py` 即可(参数说明在下详述)
